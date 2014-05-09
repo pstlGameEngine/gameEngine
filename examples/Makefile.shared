@@ -1,0 +1,33 @@
+LIB_DIR=../../lib
+JS_DIR=$(LIB_DIR)/js
+SFML_DIR=$(LIB_DIR)/sfml
+AUDIOFILES=$(JS_DIR)/*.js
+
+BYTE_CC=ocamlfind ocamlc
+JSCC=js_of_ocaml $(AUDIOFILES)
+BYTE_CFLAGS=-package 'unix','js_of_ocaml','js_of_ocaml.syntax' -syntax camlp4o
+
+SFML_CFLAGS=-package 'ocsfml','ocsfml.audio','ocsfml.graphics','ocsfml.network','ocsfml.system','ocsfml.window'
+
+all: $(TARGET).js $(TARGET).html $(TARGET) $(TARGET).native
+
+$(TARGET): $(TARGET).ml
+	ocamlfind ocamlc -linkpkg $(SFML_CFLAGS) -I $(SFML_DIR) libsfml.cma -o $@ $<
+
+$(TARGET).native: $(TARGET).ml
+	ocamlfind opt -linkpkg $(SFML_CFLAGS) -I $(SFML_DIR) libsfml.cmxa -o $@ $<
+
+$(TARGET).html: 
+	@echo "<!doctype HTML><html><head><script type='text/javascript' src='$(TARGET).js'></script></head><body></body></html>" > $@
+
+$(TARGET).js: $(TARGET).byte
+	$(JSCC) -o $@ $<
+
+$(TARGET).byte: $(TARGET).ml
+	$(BYTE_CC) $(BYTE_CFLAGS) -linkpkg -o $@ -I $(JS_DIR) libjs.cma $<
+
+clean:
+	rm -f $(TARGET).js $(TARGET).html
+	rm -f *.cmx *.o *~
+	rm -f $(TARGET).cmo $(TARGET).cmi $(TARGET).byte $(TARGET).native *~
+	rm -f $(TARGET)
