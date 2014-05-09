@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Mjwindow.MouseButton.html">
+<link rel="Up" href="Mjwindow.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Audio" rel="Chapter" href="Audio.html">
+<link title="Color" rel="Chapter" href="Color.html">
+<link title="Gif" rel="Chapter" href="Gif.html">
+<link title="Image" rel="Chapter" href="Image.html">
+<link title="Keyboard" rel="Chapter" href="Keyboard.html">
+<link title="Mjmenu" rel="Chapter" href="Mjmenu.html">
+<link title="Mjwindow" rel="Chapter" href="Mjwindow.html">
+<link title="Text" rel="Chapter" href="Text.html">
+<link title="Time" rel="Chapter" href="Time.html"><title>Mjwindow.Mouse</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Mjwindow.MouseButton.html" title="Mjwindow.MouseButton">Previous</a>
+&nbsp;<a class="up" href="Mjwindow.html" title="Mjwindow">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_Mjwindow.Mouse.html">Mjwindow.Mouse</a></h1>
+
+<pre><span class="keyword">module</span> Mouse: <code class="code">sig</code> <a href="Mjwindow.Mouse.html">..</a> <code class="code">end</code></pre><hr width="100%">
+
+<pre><span id="VALis_button_pressed"><span class="keyword">val</span> is_button_pressed</span> : <code class="type"><a href="Mjwindow.MouseButton.html#TYPEt">Mjwindow.MouseButton.t</a> -> bool</code></pre><div class="info ">
+Check if a Mouse Button is pressed.<br>
+<b>Returns</b> True if the Mouse Button is pressed, false otherwise<br>
+</div>
+
+<pre><span id="VALget_position"><span class="keyword">val</span> get_position</span> : <code class="type">unit -> int * int</code></pre><div class="info ">
+Gives the posion of the mouse relative to the screen.<br>
+<b>Returns</b> the position of the mouse relative to the screen (a couple of integer x, y)<br>
+</div>
+
+<pre><span id="VALget_relative_position"><span class="keyword">val</span> get_relative_position</span> : <code class="type"><a href="Mjwindow.html#TYPEt">Mjwindow.t</a> -> int * int</code></pre><div class="info ">
+Gives the posion of the mouse relative to the window.<br>
+<b>Returns</b> the position of the mouse relative to the window (a couple of integer x, y)<br>
+</div>
+
+<pre><span id="VALset_position"><span class="keyword">val</span> set_position</span> : <code class="type">int * int -> unit</code></pre><div class="info ">
+Change the position of the mouse relative to the screen , only for sfml.<br>
+<b>Returns</b> void.<br>
+</div>
+
+<pre><span id="VALset_relative_position"><span class="keyword">val</span> set_relative_position</span> : <code class="type"><a href="Mjwindow.html#TYPEt">Mjwindow.t</a> -> int * int -> unit</code></pre><div class="info ">
+Change the position of the mouse relative to the window , only for sfml.<br>
+<b>Returns</b> void.<br>
+</div>
+</body></html>

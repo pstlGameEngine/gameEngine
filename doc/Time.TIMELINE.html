@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="Up" href="Time.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Audio" rel="Chapter" href="Audio.html">
+<link title="Color" rel="Chapter" href="Color.html">
+<link title="Gif" rel="Chapter" href="Gif.html">
+<link title="Image" rel="Chapter" href="Image.html">
+<link title="Keyboard" rel="Chapter" href="Keyboard.html">
+<link title="Mjmenu" rel="Chapter" href="Mjmenu.html">
+<link title="Mjwindow" rel="Chapter" href="Mjwindow.html">
+<link title="Text" rel="Chapter" href="Text.html">
+<link title="Time" rel="Chapter" href="Time.html"><title>Time.TIMELINE</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="Time.html" title="Time">Up</a>
+&nbsp;</div>
+<h1>Functor <a href="type_Time.TIMELINE.html">Time.TIMELINE</a></h1>
+
+<pre><span class="keyword">module</span> TIMELINE: <div class="sig_block"><code class="code">functor (</code><code class="code">G</code><code class="code"> : </code><code class="type"><a href="Time.GAME.html">GAME</a></code><code class="code">) -&gt; </code><code class="code">sig</code> <a href="Time.TIMELINE.html">..</a> <code class="code">end</code></div></pre><table border="0" cellpadding="3" width="100%">
+<tr>
+<td align="left" valign="top" width="1%%"><b>Parameters: </b></td>
+<td>
+<table class="paramstable">
+<tr>
+<td align="center" valign="top" width="15%">
+<code>G</code></td>
+<td align="center" valign="top">:</td>
+<td><code class="type"><a href="Time.GAME.html">GAME</a></code>
+</table>
+</td>
+</tr>
+</table>
+<hr width="100%">
+
+<pre><span id="TYPEtosave"><span class="keyword">type</span> <code class="type"></code>tosave</span> = <code class="type">G.state</code> </pre>
+
+
+<pre><code><span id="TYPEtree"><span class="keyword">type</span> <code class="type"></code>tree</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtree.Nil"><span class="constructor">Nil</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtree.Cell"><span class="constructor">Cell</span></span> <span class="keyword">of</span> <code class="type"><a href="Time.TIMELINE.html#TYPEnode">node</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEnode"><span class="keyword">type</span> <code class="type"></code>node</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTnode.content">content</span>&nbsp;: <code class="type"><a href="Time.TIMELINE.html#TYPEtosave">tosave</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span class="keyword">mutable&nbsp;</span><span id="TYPEELTnode.father">father</span>&nbsp;: <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span class="keyword">mutable&nbsp;</span><span id="TYPEELTnode.sons">sons</span>&nbsp;: <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a> list</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><span id="EXCEPTIONHasNoPrevious"><span class="keyword">exception</span> HasNoPrevious</span> <span class="keyword">of</span> <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a></code></pre>
+
+<pre><span id="EXCEPTIONHasNoContent"><span class="keyword">exception</span> HasNoContent</span> <span class="keyword">of</span> <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a></code></pre>
+
+<pre><span id="VALaddState"><span class="keyword">val</span> addState</span> : <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a> -> <a href="Time.TIMELINE.html#TYPEtosave">tosave</a> -> <a href="Time.TIMELINE.html#TYPEtree">tree</a></code></pre>
+<pre><span id="VALbeginRecord"><span class="keyword">val</span> beginRecord</span> : <code class="type">unit -> <a href="Time.TIMELINE.html#TYPEtree">tree</a></code></pre>
+<pre><span id="VALracine"><span class="keyword">val</span> racine</span> : <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a> Pervasives.ref</code></pre>
+<pre><span id="VALgetContent"><span class="keyword">val</span> getContent</span> : <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a> -> <a href="Time.TIMELINE.html#TYPEtosave">tosave</a></code></pre>
+<pre><span id="VALgetSons"><span class="keyword">val</span> getSons</span> : <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a> -> <a href="Time.TIMELINE.html#TYPEtree">tree</a> list</code></pre>
+<pre><span id="VALprevious_state"><span class="keyword">val</span> previous_state</span> : <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a> -> <a href="Time.TIMELINE.html#TYPEtree">tree</a></code></pre>
+<pre><span id="VALprevious_n_state"><span class="keyword">val</span> previous_n_state</span> : <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a> -> int -> <a href="Time.TIMELINE.html#TYPEtree">tree</a></code></pre>
+<pre><span id="VALdrawNode"><span class="keyword">val</span> drawNode</span> : <code class="type"><a href="Mjwindow.html#TYPEt">Mjwindow.t</a> -> <a href="Time.TIMELINE.html#TYPEtree">tree</a> -> unit</code></pre>
+<pre><span id="VALprint_tree"><span class="keyword">val</span> print_tree</span> : <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a> -> int -> unit</code></pre><div class="info ">
+print la hauteur et le contenu de l'arbre appeller la fonction avec h = 0<br>
+</div>
+
+<pre><span id="VALnextState"><span class="keyword">val</span> nextState</span> : <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a> -> <a href="Time.TIMELINE.html#TYPEtree">tree</a></code></pre><div class="info ">
+Ajoute et renvois le prochaine état dans l'arbre<br>
+</div>
+
+<pre><span id="VALmajDrawList"><span class="keyword">val</span> majDrawList</span> : <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a> list -> <a href="Mjwindow.html#TYPEt">Mjwindow.t</a> -> <a href="Time.TIMELINE.html#TYPEtree">tree</a> list</code></pre><div class="info ">
+Dessine et augmenta la hauteur des noeuds<br>
+</div>
+
+<pre><span id="VALmajNextList"><span class="keyword">val</span> majNextList</span> : <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a> list -> <a href="Time.TIMELINE.html#TYPEtree">tree</a> list</code></pre><div class="info ">
+Augmente la hauteur des neouds<br>
+</div>
+
+<pre><span id="VALmajPrevList"><span class="keyword">val</span> majPrevList</span> : <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a> list -><br>       'a -> <a href="Time.TIMELINE.html#TYPEtree">tree</a> -> <a href="Time.TIMELINE.html#TYPEtree">tree</a> list</code></pre><div class="info ">
+Diminue la hauteur des noeuds<br>
+</div>
+
+<pre><span id="VALmajDrawPrevList"><span class="keyword">val</span> majDrawPrevList</span> : <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a> list -><br>       <a href="Mjwindow.html#TYPEt">Mjwindow.t</a> -> <a href="Time.TIMELINE.html#TYPEtree">tree</a> -> <a href="Time.TIMELINE.html#TYPEtree">tree</a> list</code></pre><div class="info ">
+Diminue la hauteur des noeuds en les dessinants<br>
+</div>
+
+<pre><span id="VALdrawAllNode"><span class="keyword">val</span> drawAllNode</span> : <code class="type"><a href="Time.TIMELINE.html#TYPEtree">tree</a> -><br>       <a href="Mjwindow.html#TYPEt">Mjwindow.t</a> -><br>       <a href="Time.TIMELINE.html#TYPEtree">tree</a> list -> <a href="Time.TIMELINE.html#TYPEtree">tree</a> * <a href="Time.TIMELINE.html#TYPEtree">tree</a> list</code></pre><div class="info ">
+Dessine tout les noeuds , augmente leurs hauteur et cree un nouveau noeud<br>
+</div>
+
+<pre><span id="VALonNewF"><span class="keyword">val</span> onNewF</span> : <code class="type"><a href="Mjwindow.html#TYPEt">Mjwindow.t</a> -><br>       <a href="Time.TIMELINE.html#TYPEtree">tree</a> * <a href="Time.TIMELINE.html#TYPEtree">tree</a> list -><br>       <a href="Time.TIMELINE.html#TYPEtree">tree</a> * <a href="Time.TIMELINE.html#TYPEtree">tree</a> list</code></pre><div class="info ">
+Fonction executé a chaque frame nodeLevel = node au meme hauteur que current<br>
+</div>
+
+<pre><span id="VALplay"><span class="keyword">val</span> play</span> : <code class="type"><a href="Mjwindow.html#TYPEt">Mjwindow.t</a> -> unit</code></pre></body></html>

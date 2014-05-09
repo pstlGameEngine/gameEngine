@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Audio.html">
+<link rel="next" href="Gif.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Audio" rel="Chapter" href="Audio.html">
+<link title="Color" rel="Chapter" href="Color.html">
+<link title="Gif" rel="Chapter" href="Gif.html">
+<link title="Image" rel="Chapter" href="Image.html">
+<link title="Keyboard" rel="Chapter" href="Keyboard.html">
+<link title="Mjmenu" rel="Chapter" href="Mjmenu.html">
+<link title="Mjwindow" rel="Chapter" href="Mjwindow.html">
+<link title="Text" rel="Chapter" href="Text.html">
+<link title="Time" rel="Chapter" href="Time.html"><title>Color</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Audio.html" title="Audio">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Gif.html" title="Gif">Next</a>
+</div>
+<h1>Module <a href="type_Color.html">Color</a></h1>
+
+<pre><span class="keyword">module</span> Color: <code class="code">sig</code> <a href="Color.html">..</a> <code class="code">end</code></pre><div class="info module top">
+The color module<br>
+</div>
+<hr width="100%">
+
+<pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> </pre>
+<div class="info ">
+the color type, using the rgba format where:
+r, g and b are int between 0 and 255, and a (alpha component or opacity) is a float between 0 and 1<br>
+</div>
+
+
+<pre><span id="VALrgb"><span class="keyword">val</span> rgb</span> : <code class="type">int -> int -> int -> <a href="Color.html#TYPEt">t</a></code></pre><div class="info ">
+rgb a b c returns a color where the red component is equal to a,
+the green component is equal to b, the blue component is equal to c 
+and the alpha component is equal to 1. (maximum opacity)<br>
+</div>
+
+<pre><span id="VALrgba"><span class="keyword">val</span> rgba</span> : <code class="type">int -> int -> int -> float -> <a href="Color.html#TYPEt">t</a></code></pre><div class="info ">
+rgb a b c d returns a color where the red component is equal to a,
+the green component is equal to b, the blue component is equal to c 
+and the alpha component is equal to d (d between 0. and 1.)<br>
+</div>
+
+<pre><span id="VALadd"><span class="keyword">val</span> add</span> : <code class="type"><a href="Color.html#TYPEt">t</a> -> <a href="Color.html#TYPEt">t</a> -> <a href="Color.html#TYPEt">t</a></code></pre>
+<pre><span id="VALmodulate"><span class="keyword">val</span> modulate</span> : <code class="type"><a href="Color.html#TYPEt">t</a> -> <a href="Color.html#TYPEt">t</a> -> <a href="Color.html#TYPEt">t</a></code></pre>
+<pre><span id="VALmix"><span class="keyword">val</span> mix</span> : <code class="type"><a href="Color.html#TYPEt">t</a> -> <a href="Color.html#TYPEt">t</a> -> <a href="Color.html#TYPEt">t</a></code></pre>
+<pre><span id="VALwhite"><span class="keyword">val</span> white</span> : <code class="type"><a href="Color.html#TYPEt">t</a></code></pre>
+<pre><span id="VALblack"><span class="keyword">val</span> black</span> : <code class="type"><a href="Color.html#TYPEt">t</a></code></pre>
+<pre><span id="VALred"><span class="keyword">val</span> red</span> : <code class="type"><a href="Color.html#TYPEt">t</a></code></pre>
+<pre><span id="VALblue"><span class="keyword">val</span> blue</span> : <code class="type"><a href="Color.html#TYPEt">t</a></code></pre>
+<pre><span id="VALgreen"><span class="keyword">val</span> green</span> : <code class="type"><a href="Color.html#TYPEt">t</a></code></pre>
+<pre><span id="VALmagenta"><span class="keyword">val</span> magenta</span> : <code class="type"><a href="Color.html#TYPEt">t</a></code></pre>
+<pre><span id="VALcyan"><span class="keyword">val</span> cyan</span> : <code class="type"><a href="Color.html#TYPEt">t</a></code></pre>
+<pre><span id="VALyellow"><span class="keyword">val</span> yellow</span> : <code class="type"><a href="Color.html#TYPEt">t</a></code></pre>
+<pre><span id="VALpink"><span class="keyword">val</span> pink</span> : <code class="type"><a href="Color.html#TYPEt">t</a></code></pre>
+<pre><span id="VALtransparent"><span class="keyword">val</span> transparent</span> : <code class="type"><a href="Color.html#TYPEt">t</a></code></pre>
+<pre><span id="VALset_alpha_component"><span class="keyword">val</span> set_alpha_component</span> : <code class="type"><a href="Color.html#TYPEt">t</a> -> float -> <a href="Color.html#TYPEt">t</a></code></pre><div class="info ">
+set_alpha_component col a returns the same color as col with the alpha
+component value equal to a<br>
+</div>
+
+<pre><span id="VALred_comp"><span class="keyword">val</span> red_comp</span> : <code class="type"><a href="Color.html#TYPEt">t</a> -> int</code></pre><div class="info ">
+returns the value of the red component (an int between 0 and 255)<br>
+</div>
+
+<pre><span id="VALgreen_comp"><span class="keyword">val</span> green_comp</span> : <code class="type"><a href="Color.html#TYPEt">t</a> -> int</code></pre><div class="info ">
+returns the value of the green component (an int between 0 and 255)<br>
+</div>
+
+<pre><span id="VALblue_comp"><span class="keyword">val</span> blue_comp</span> : <code class="type"><a href="Color.html#TYPEt">t</a> -> int</code></pre><div class="info ">
+returns the value of the blue component (an int between 0 and 255)<br>
+</div>
+
+<pre><span id="VALalpha_comp"><span class="keyword">val</span> alpha_comp</span> : <code class="type"><a href="Color.html#TYPEt">t</a> -> float</code></pre><div class="info ">
+returns the value of the alpha component (a float between 0. and 1.)<br>
+</div>
+</body></html>

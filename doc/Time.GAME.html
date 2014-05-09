@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="Up" href="Time.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Audio" rel="Chapter" href="Audio.html">
+<link title="Color" rel="Chapter" href="Color.html">
+<link title="Gif" rel="Chapter" href="Gif.html">
+<link title="Image" rel="Chapter" href="Image.html">
+<link title="Keyboard" rel="Chapter" href="Keyboard.html">
+<link title="Mjmenu" rel="Chapter" href="Mjmenu.html">
+<link title="Mjwindow" rel="Chapter" href="Mjwindow.html">
+<link title="Text" rel="Chapter" href="Text.html">
+<link title="Time" rel="Chapter" href="Time.html"><title>Time.GAME</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="Time.html" title="Time">Up</a>
+&nbsp;</div>
+<h1>Module type <a href="type_Time.GAME.html">Time.GAME</a></h1>
+
+<pre><span class="keyword">module type</span> GAME = <code class="code">sig</code> <a href="Time.GAME.html">..</a> <code class="code">end</code></pre><hr width="100%">
+
+<pre><span id="TYPEstate"><span class="keyword">type</span> <code class="type"></code>state</span> </pre>
+<div class="info ">
+etat de la partie a sauvgarder<br>
+</div>
+
+
+<pre><span id="VALdrawState"><span class="keyword">val</span> drawState</span> : <code class="type"><a href="Mjwindow.html#TYPEt">Mjwindow.t</a> -> <a href="Time.GAME.html#TYPEstate">state</a> -> unit</code></pre><div class="info ">
+Les dessin a faire a chaque frame du state<br>
+</div>
+
+<pre><span id="VALinit"><span class="keyword">val</span> init</span> : <code class="type">unit -> <a href="Time.GAME.html#TYPEstate">state</a></code></pre><div class="info ">
+initialisation de state + init du game ?<br>
+</div>
+
+<pre><span id="VALtick"><span class="keyword">val</span> tick</span> : <code class="type"><a href="Time.GAME.html#TYPEstate">state</a> -> <a href="Time.GAME.html#TYPEstate">state</a></code></pre><div class="info ">
+Modification a faire pour chaque tick ( Invariant )<br>
+</div>
+
+<pre><span id="VALonNewFrame"><span class="keyword">val</span> onNewFrame</span> : <code class="type"><a href="Mjwindow.html#TYPEt">Mjwindow.t</a> -> unit</code></pre><div class="info ">
+Fonction qui va etre appeler a chaque frame + les dessins a faire<br>
+</div>
+
+<pre><span id="VALhead"><span class="keyword">val</span> head</span> : <code class="type">int Pervasives.ref</code></pre><div class="info ">
+Direction de la tete de lecture 
+      0  = pause (not implemented)  
+      1 = play 
+      2 = back in the time 
+      3 = play and draw all state in the same relative time 
+      4 = back in the time and draw all state in the same relative time<br>
+</div>
+
+<pre><span id="VALtree"><span class="keyword">val</span> tree</span> : <code class="type">int Pervasives.ref</code></pre><div class="info ">
+Manipulation du tree
+      0 = Do nothing
+      1 = efface tout le tree
+      2 = cut les father du tree
+      3 = cut les fils du currentNode
+      4 = cut les fils du currentNode et tous les node du meme niveau 
+			5 = jump to the tree root<br>
+</div>
+</body></html>

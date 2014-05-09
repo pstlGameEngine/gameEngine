@@ -1,0 +1,61 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Audio" rel="Chapter" href="Audio.html">
+<link title="Color" rel="Chapter" href="Color.html">
+<link title="Gif" rel="Chapter" href="Gif.html">
+<link title="Image" rel="Chapter" href="Image.html">
+<link title="Keyboard" rel="Chapter" href="Keyboard.html">
+<link title="Mjmenu" rel="Chapter" href="Mjmenu.html">
+<link title="Mjwindow" rel="Chapter" href="Mjwindow.html">
+<link title="Text" rel="Chapter" href="Text.html">
+<link title="Time" rel="Chapter" href="Time.html"><title>Time.TIMELINE</title>
+</head>
+<body>
+<code class="code"><span class="keyword">functor</span>&nbsp;(<span class="constructor">G</span>&nbsp;:&nbsp;<span class="constructor">GAME</span>)&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;<span class="keyword">sig</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;tosave&nbsp;=&nbsp;<span class="constructor">G</span>.state<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;tree&nbsp;=&nbsp;<span class="constructor">Nil</span>&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Cell</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.node<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;node&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content&nbsp;:&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tosave;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">mutable</span>&nbsp;father&nbsp;:&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">mutable</span>&nbsp;sons&nbsp;:&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;list;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">exception</span>&nbsp;<span class="constructor">HasNoPrevious</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">exception</span>&nbsp;<span class="constructor">HasNoContent</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;addState&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tosave&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;beginRecord&nbsp;:&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;racine&nbsp;:&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;<span class="constructor">Pervasives</span>.ref<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;getContent&nbsp;:&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tosave<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;getSons&nbsp;:&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;previous_state&nbsp;:&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;previous_n_state&nbsp;:&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;drawNode&nbsp;:&nbsp;<span class="constructor">Mjwindow</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;print_tree&nbsp;:&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;nextState&nbsp;:&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;majDrawList&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Mjwindow</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;majNextList&nbsp;:&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;majPrevList&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">'</span>a&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;majDrawPrevList&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Mjwindow</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;drawAllNode&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Mjwindow</span>.t&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;*&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;onNewF&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Mjwindow</span>.t&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;*&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;*&nbsp;<span class="constructor">Time</span>.<span class="constructor">TIMELINE</span>.tree&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;play&nbsp;:&nbsp;<span class="constructor">Mjwindow</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">end</span></code></body></html>

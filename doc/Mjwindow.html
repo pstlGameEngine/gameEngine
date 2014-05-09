@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Mjmenu.html">
+<link rel="next" href="Text.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Audio" rel="Chapter" href="Audio.html">
+<link title="Color" rel="Chapter" href="Color.html">
+<link title="Gif" rel="Chapter" href="Gif.html">
+<link title="Image" rel="Chapter" href="Image.html">
+<link title="Keyboard" rel="Chapter" href="Keyboard.html">
+<link title="Mjmenu" rel="Chapter" href="Mjmenu.html">
+<link title="Mjwindow" rel="Chapter" href="Mjwindow.html">
+<link title="Text" rel="Chapter" href="Text.html">
+<link title="Time" rel="Chapter" href="Time.html"><title>Mjwindow</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Mjmenu.html" title="Mjmenu">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Text.html" title="Text">Next</a>
+</div>
+<h1>Module <a href="type_Mjwindow.html">Mjwindow</a></h1>
+
+<pre><span class="keyword">module</span> Mjwindow: <code class="code">sig</code> <a href="Mjwindow.html">..</a> <code class="code">end</code></pre><div class="info module top">
+window module<br>
+</div>
+<hr width="100%">
+
+<pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> </pre>
+<div class="info ">
+the window type<br>
+</div>
+
+
+<pre><span id="VALgetRelativePosition"><span class="keyword">val</span> getRelativePosition</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> int * int</code></pre><div class="info ">
+getRelativePosition w returns a couple of int representing the relarive position of the mouse in the window w<br>
+</div>
+
+<pre><span id="VALsetRelativePosition"><span class="keyword">val</span> setRelativePosition</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> int * int -> unit</code></pre>
+<pre><span id="VALcreate_window"><span class="keyword">val</span> create_window</span> : <code class="type">float -> float -> string -> int -> <a href="Color.html#TYPEt">Color.t</a> -> <a href="Mjwindow.html#TYPEt">t</a></code></pre><div class="info ">
+create_window a b s fps col creates a window with:<ul>
+<li>a with value equal to 'a'</li>
+<li>a height value equal to 'b'</li>
+<li>a title equal to 's'</li>
+<li>a frame Per Second value equal to 'fps' (the number of call to the function display that the motor wont exeed, and try to reach if possible)</li>
+<li>a background color equal to 'col'</li>
+</ul>
+<br>
+</div>
+
+<pre><span id="VALexplicit_load"><span class="keyword">val</span> explicit_load</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> <a href="Image.html#TYPEt">Image.t</a> list -> unit</code></pre><div class="info ">
+Load ressources that can be displayed in the window. Note that the motor does load it if you directly make a call to drawImage without calling explicit_load, but you'll may experience a slowdown while loading<br>
+</div>
+
+<pre><span id="VALdisplay"><span class="keyword">val</span> display</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> (<a href="Mjwindow.html#TYPEt">t</a> -> unit) -> bool -> unit</code></pre><div class="info ">
+Function that renders what have been drawn on the window so far.
+display fen func b, makes call to the 'func' function the number of time specified in the fps field of the window fen, every second
+if b is equal to true, the window is cleared between 2 displays.
+if b is equal to false, the window is not cleared between 2 displays.
+the function func is actually the one that produce the displays, it takes as argument one window and draws on it<br>
+</div>
+
+<pre><span id="VALdisplay_tm"><span class="keyword">val</span> display_tm</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> (<a href="Mjwindow.html#TYPEt">t</a> -> 'a -> 'a) -> 'a -> bool -> unit</code></pre><div class="info ">
+Same as 'display' but the func function takes as argument more than a window:
+-the 'a argument allows to specify on more value that can configure the display.
+-it returns a value of the same type that will configure the next display
+display_tm : t func conf b: makes the first call to func with conf as argument, the next ones will use the result of their predecessor<br>
+</div>
+
+<pre><span id="VALsetTitle"><span class="keyword">val</span> setTitle</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> string -> unit</code></pre><div class="info ">
+Changes the title field of a window<br>
+</div>
+
+<pre><span id="VALstrokeRect"><span class="keyword">val</span> strokeRect</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> float -> float -> float -> float -> <a href="Color.html#TYPEt">Color.t</a> -> unit</code></pre><div class="info ">
+function that draws the perimeter of a rectangle
+*** strokeRect fen x y width height col, draws on the window 'fen', the perimeter of the rectangle with the bottom-left corner at the point of coordinates 'x' 'y', with width value equal to 'w' and height value equal to 'h' with the 'col' color<br>
+</div>
+
+<pre><span id="VALfillRect"><span class="keyword">val</span> fillRect</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> float -> float -> float -> float -> <a href="Color.html#TYPEt">Color.t</a> -> unit</code></pre><div class="info ">
+function that draws a filled rectangle
+*** fillRect fen x y width height col, draws on the window 'fen', a filled rectangle with the 'col' color. its bottom-left corner is at the point of coordinates 'x' 'y', its width value is equal to 'w' and its height value is equal to 'h'<br>
+</div>
+
+<pre><span id="VALstrokeCircle"><span class="keyword">val</span> strokeCircle</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> float -> float -> float -> <a href="Color.html#TYPEt">Color.t</a> -> unit</code></pre><div class="info ">
+function that draws the perimeter of a circle
+*** strokeCircle fen x y r col, draws on the window 'fen', the perimeter of the circle with the center at the point of coordinates 'x' 'y', with radius value equal to 'r' and with the 'col' color<br>
+</div>
+
+<pre><span id="VALfillCircle"><span class="keyword">val</span> fillCircle</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> float -> float -> float -> <a href="Color.html#TYPEt">Color.t</a> -> unit</code></pre><div class="info ">
+function that draws a filled circle
+*** fillCircle fen x y r col, draws on the window 'fen', a filled circle with the  the 'col' color. its center is at the point of coordinates 'x' 'y', its radius value is equal to 'r'<br>
+</div>
+
+<pre><span id="VALwriteText"><span class="keyword">val</span> writeText</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> <a href="Text.html#TYPEt">Text.t</a> -> <a href="Color.html#TYPEt">Color.t</a> -> unit</code></pre>
+<pre><span id="VALdrawImage"><span class="keyword">val</span> drawImage</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> <a href="Image.html#TYPEt">Image.t</a> -> float -> float -> float -> float -> float -> unit</code></pre>
+<pre><span id="VALdrawGif"><span class="keyword">val</span> drawGif</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> <a href="Gif.html#TYPEt">Gif.t</a> -> float -> float -> float -> float -> float -> unit</code></pre>
+<pre><span id="VALredrawBackground"><span class="keyword">val</span> redrawBackground</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> unit</code></pre><div class="info ">
+redraw the background of a window<br>
+</div>
+
+<pre><span id="VALclear"><span class="keyword">val</span> clear</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> unit</code></pre><div class="info ">
+clear the content of the window, and redraw its background<br>
+</div>
+
+<pre><span id="VALclose"><span class="keyword">val</span> close</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> unit</code></pre><div class="info ">
+close the window<br>
+</div>
+
+<pre><span id="VALgetheight"><span class="keyword">val</span> getheight</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> int</code></pre><div class="info ">
+returns the height value of a window<br>
+</div>
+
+<pre><span id="VALgetwidth"><span class="keyword">val</span> getwidth</span> : <code class="type"><a href="Mjwindow.html#TYPEt">t</a> -> int</code></pre><div class="info ">
+returns the width value of a window<br>
+</div>
+
+<pre><span class="keyword">module</span> <a href="Mjwindow.MouseButton.html">MouseButton</a>: <code class="code">sig</code> <a href="Mjwindow.MouseButton.html">..</a> <code class="code">end</code></pre><div class="info">
+All type of MouseButton
+</div>
+
+<pre><span class="keyword">module</span> <a href="Mjwindow.Mouse.html">Mouse</a>: <code class="code">sig</code> <a href="Mjwindow.Mouse.html">..</a> <code class="code">end</code></pre>
+<pre><span id="VALmouse_state"><span class="keyword">val</span> mouse_state</span> : <code class="type">(<a href="Mjwindow.MouseButton.html#TYPEt">MouseButton.t</a>, int) Hashtbl.t</code></pre><div class="info ">
+HashTable of MouseButton event .<br>
+<b>Returns</b> HashTable of MouseButton associate to 0 (Button Up) or 1 (Button Down)<br>
+</div>
+
+<pre><span id="VALmouse_pos"><span class="keyword">val</span> mouse_pos</span> : <code class="type">(string, int) Hashtbl.t</code></pre><div class="info ">
+HashTable of Mouse position .<br>
+<b>Returns</b> HashTable of x or y associate to this current value<br>
+</div>
+</body></html>

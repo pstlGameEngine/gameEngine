@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Keyboard.KeyCode.html">
+<link rel="Up" href="Keyboard.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Audio" rel="Chapter" href="Audio.html">
+<link title="Color" rel="Chapter" href="Color.html">
+<link title="Gif" rel="Chapter" href="Gif.html">
+<link title="Image" rel="Chapter" href="Image.html">
+<link title="Keyboard" rel="Chapter" href="Keyboard.html">
+<link title="Mjmenu" rel="Chapter" href="Mjmenu.html">
+<link title="Mjwindow" rel="Chapter" href="Mjwindow.html">
+<link title="Text" rel="Chapter" href="Text.html">
+<link title="Time" rel="Chapter" href="Time.html"><title>Keyboard.Keyboard</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Keyboard.KeyCode.html" title="Keyboard.KeyCode">Previous</a>
+&nbsp;<a class="up" href="Keyboard.html" title="Keyboard">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_Keyboard.Keyboard.html">Keyboard.Keyboard</a></h1>
+
+<pre><span class="keyword">module</span> Keyboard: <code class="code">sig</code> <a href="Keyboard.Keyboard.html">..</a> <code class="code">end</code></pre><div class="info module top">
+Kayboard Operation<br>
+</div>
+<hr width="100%">
+
+<pre><span id="VALkeycode_state"><span class="keyword">val</span> keycode_state</span> : <code class="type">(<a href="Keyboard.KeyCode.html#TYPEt">Keyboard.KeyCode.t</a>, int) Hashtbl.t</code></pre><div class="info ">
+HashTable of KeyCode event .<br>
+<b>Returns</b> HashTable of KeyCode associate to 0 (Key Up) or 1 (Key Down)<br>
+</div>
+
+<pre><span id="VALinit_keycode_state"><span class="keyword">val</span> init_keycode_state</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+initisation of the HashTable<br>
+</div>
+
+<pre><span id="VALrec_down_keyboard_evt"><span class="keyword">val</span> rec_down_keyboard_evt</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+Record and write en the HashTable when key is pushed<br>
+</div>
+
+<pre><span id="VALrec_up_keyboard_evt"><span class="keyword">val</span> rec_up_keyboard_evt</span> : <code class="type">unit -> unit</code></pre><div class="info ">
+Record and write en the HashTable when key is up<br>
+</div>
+
+<pre><span id="VALis_key_pressed"><span class="keyword">val</span> is_key_pressed</span> : <code class="type"><a href="Keyboard.KeyCode.html#TYPEt">Keyboard.KeyCode.t</a> -> bool</code></pre><div class="info ">
+Check if a key is pressed.<br>
+<b>Returns</b> True if the key is pressed, false otherwise<br>
+</div>
+</body></html>
