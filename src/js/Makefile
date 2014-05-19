@@ -11,7 +11,7 @@ TARGET=libjs
 all: .depend $(TARGET).cma
 
 # We need to order the dependencies to link correctly
-$(TARGET).cma: audio.cmo color.cmo image.cmo gif.cmo keyboard.cmo loader.cmo text.cmo mjwindow.cmo mjmenu.cmo timebis.cmo time.cmo
+$(TARGET).cma: audio.cmo color.cmo image.cmo gif.cmo keyboard.cmo mouse.cmo loader.cmo text.cmo mjwindow.cmo mjmenu.cmo timebis.cmo time.cmo
 	$(CC) $(LINKER) -a -o $@ $^
 
 %.cmi: %.mli

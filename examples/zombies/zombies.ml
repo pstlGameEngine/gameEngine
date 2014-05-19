@@ -38,7 +38,7 @@ let _ =
       Mjwindow.drawImage f z2 400. !posy !sizeX !sizeY !alpha;
       newSizes ();
       nb_frame := !nb_frame + 1;
-    if Mjwindow.Mouse.is_button_pressed Mjwindow.MouseButton.LeftButton then 
+    if Mouse.Mouse.is_button_pressed Mouse.MouseButton.LeftButton then 
     Mjwindow.close f
 
   and fen = Mjwindow.create_window 900. 650. "zombie is comming" 25 Color.black in

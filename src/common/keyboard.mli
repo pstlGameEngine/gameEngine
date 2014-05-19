@@ -120,14 +120,10 @@ sig
 	(** initisation of the HashTable *)
   val init_keycode_state : unit -> unit
 	
-	(** Record and write en the HashTable when key is pushed *)
-  val rec_down_keyboard_evt : unit -> unit
-	
-	(** Record and write en the HashTable when key is up *)
-  val rec_up_keyboard_evt : unit -> unit
-	
 	(** Check if a key is pressed. 
 			@param  t Type KeyCode to check.
       @return True if the key is pressed, false otherwise *)
   val is_key_pressed : KeyCode.t -> bool
+
+  val update : unit -> unit
 end

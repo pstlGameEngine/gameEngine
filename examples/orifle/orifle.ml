@@ -1,4 +1,5 @@
 open Keyboard
+open Mouse
 
 module Orifle =
 struct
@@ -268,7 +269,7 @@ struct
           {state with gun = Gun (b,b,c,-50,i)}
         end else if d > c then begin 
           gunShot ();
-          (checkCibles fen state (Mjwindow.Mouse.get_relative_position fen))
+          (checkCibles fen state (Mjwindow.get_relative_position fen))
         end else
           state 
 
@@ -296,13 +297,13 @@ struct
         else state
     | Ingame current_state ->
         begin
-          let pos = (Mjwindow.Mouse.get_relative_position fen)
+          let pos = (Mjwindow.get_relative_position fen)
             in let newS = {current_state with posX = fst (float_coord pos); 
 		                              posY = snd (float_coord pos)}
               in
 	        if Keyboard.is_key_pressed KeyCode.P then
                   Pause (Mjmenu.makeMenu fen ["CONTINUE";"HELP";"EXIT"],newS)
-                else if Mjwindow.Mouse.is_button_pressed Mjwindow.MouseButton.LeftButton then
+                else if Mouse.is_button_pressed MouseButton.LeftButton then
 		  Ingame (fire newS fen)
                 else
                   Ingame newS

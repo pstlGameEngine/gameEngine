@@ -67,6 +67,8 @@ let redrawBackground fen =
 let getRelativePosition fen = 
   rw_getRelativePosition fen.fen
 
+let get_relative_position = getRelativePosition
+
 let setRelativePosition fen pos = 
   rw_setRelativePosition fen.fen pos
 
@@ -200,45 +202,3 @@ let create_window x y title framerate bg =
 let close fen =
   rw_close fen.fen;
   fen.font#destroy
-
-
-module MouseButton =
-struct
-  type t =
-    LeftButton
-  | RightButton
-  | MiddleButton
-  | XButton1
-  | XButton2
-  | MouseButtonCount
-end
-  
-module Mouse =
-struct
-
-  let get_button button = 
-    match button with 
-    | MouseButton.LeftButton -> OcsfmlWindow.Event.LeftButton
-    | MouseButton.RightButton -> OcsfmlWindow.Event.RightButton
-    | MouseButton.MiddleButton -> OcsfmlWindow.Event.MiddleButton
-    | MouseButton.XButton1 -> OcsfmlWindow.Event.XButton1
-    | MouseButton.XButton2 -> OcsfmlWindow.Event.XButton2
-    | _ -> OcsfmlWindow.Event.MouseButtonCount
-      
-  let is_button_pressed button = OcsfmlWindow.Mouse.is_button_pressed (get_button button)
-    
-  let get_position = OcsfmlWindow.Mouse.get_position
-    
-  let set_position (x,y) = OcsfmlWindow.Mouse.set_position (x,y) 
-   
-  let get_relative_position mjwin = 
-    getRelativePosition mjwin
-  let set_relative_position mjwin pos = 
-    setRelativePosition mjwin pos
-    
-end
-
-let mouse_state =  Hashtbl.create 0
-let mouse_pos =  Hashtbl.create 0
-
-

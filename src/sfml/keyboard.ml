@@ -147,8 +147,7 @@ struct
 
   let keycode_state = Hashtbl.create 0
   let init_keycode_state () = ()
-  let rec_down_keyboard_evt () = ()
-  let rec_up_keyboard_evt () = ()
+  let update () = ()
 	
   let is_key_pressed key = OcsfmlWindow.Keyboard.is_key_pressed (get_Code key)
 end

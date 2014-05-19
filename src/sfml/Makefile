@@ -13,10 +13,10 @@ TARGET=libsfml
 all: .depend $(TARGET).cma $(TARGET).cmxa
 
 # We need to order the dependencies to link correctly
-$(TARGET).cma: audio.cmo color.cmo image.cmo gif.cmo keyboard.cmo loader.cmo text.cmo mjwindow.cmo mjmenu.cmo timebis.cmo time.cmo
+$(TARGET).cma: audio.cmo color.cmo image.cmo gif.cmo keyboard.cmo mouse.cmo loader.cmo text.cmo mjwindow.cmo mjmenu.cmo timebis.cmo time.cmo
 	$(CC) $(LINKER) -a -o $@ $^
 
-$(TARGET).cmxa $(TARGET).a: audio.cmx color.cmx image.cmx gif.cmx keyboard.cmx loader.cmx text.cmx mjwindow.cmx mjmenu.cmx timebis.cmx time.cmx
+$(TARGET).cmxa $(TARGET).a: audio.cmx color.cmx image.cmx gif.cmx keyboard.cmx mouse.cmx loader.cmx text.cmx mjwindow.cmx mjmenu.cmx timebis.cmx time.cmx
 	$(CCOPT) $(LINKER) -a -o $@ $^
 
 %.cmxi: %.mli

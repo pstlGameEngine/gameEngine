@@ -281,6 +281,9 @@ struct
 
   let is_key_pressed key =
     (Hashtbl.find keycode_state key) = 1 
+
+  let update () =
+    rec_down_keyboard_evt ();
+    rec_up_keyboard_evt ();
     
-end
-  
+end 

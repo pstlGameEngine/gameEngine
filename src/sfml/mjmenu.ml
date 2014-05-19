@@ -1,3 +1,5 @@
+open Mouse
+
 type item = {text : Text.t; bounds:int*int*int*int}
 
 let inBounds item pos =
@@ -7,10 +9,10 @@ let inBounds item pos =
     && (snd pos) > b && (snd pos) < b+d
 
 let isMouseOverItem item fen = 
-  inBounds item (Mjwindow.Mouse.get_relative_position fen)
+  inBounds item (Mjwindow.get_relative_position fen)
 
 let isClickedItem item fen =
-  Mjwindow.Mouse.is_button_pressed Mjwindow.MouseButton.LeftButton 
+  Mouse.is_button_pressed MouseButton.LeftButton 
   && (isMouseOverItem item fen)
 
 type t = {items : item list}
