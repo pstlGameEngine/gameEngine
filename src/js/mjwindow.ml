@@ -17,10 +17,10 @@ type t = {doc:document Js.t;
 
 let toJsColor pstlcolor = 
   let c = CSS.Color.RGBA (
-    Color.red_comp pstlcolor,
-    Color.green_comp pstlcolor,
-    Color.blue_comp pstlcolor,
-    Color.alpha_comp pstlcolor) in
+    Mjgraphics.Color.red_comp pstlcolor,
+    Mjgraphics.Color.green_comp pstlcolor,
+    Mjgraphics.Color.blue_comp pstlcolor,
+    Mjgraphics.Color.alpha_comp pstlcolor) in
   Js.string (CSS.Color.string_of_t c)
 
 let setTimer window time = {window with interval = time}

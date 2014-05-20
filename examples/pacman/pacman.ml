@@ -14,6 +14,7 @@
     val drawGhosts : Mjwindow.t -> state -> unit
 end*)
 open Keyboard
+open Mjgraphics
 
 module Pacman =
  struct 

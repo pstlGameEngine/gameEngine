@@ -1,4 +1,6 @@
 open Keyboard
+open Mjgraphics
+
 (************* Dimention de la fenetre de jeux ****************)
 let window_width = 600. 
 let window_height = 600. 

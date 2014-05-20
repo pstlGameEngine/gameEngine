@@ -1,4 +1,5 @@
 open Keyboard
+open Mjgraphics
 
 (* utils *)
 

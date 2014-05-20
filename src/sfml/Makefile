@@ -6,17 +6,17 @@ SRC=$(wildcard *.ml)
 OBJ=$(SRC:.ml=.cmo)
 
 CAMLDEP=ocamlfind ocamldep
-TEMP_FILES=time.ml timebis.ml gif.ml
+TEMP_FILES=time.ml timebis.ml gif.ml mjcolor.ml mjmenu.ml mjgraphics.ml
 
 TARGET=libsfml
 
 all: .depend $(TARGET).cma $(TARGET).cmxa
 
 # We need to order the dependencies to link correctly
-$(TARGET).cma: audio.cmo color.cmo image.cmo gif.cmo keyboard.cmo mouse.cmo loader.cmo text.cmo mjwindow.cmo mjmenu.cmo timebis.cmo time.cmo
+$(TARGET).cma: audio.cmo mjcolor.cmo bindingcolor.cmo mjgraphics.cmo image.cmo gif.cmo keyboard.cmo mouse.cmo loader.cmo text.cmo mjwindow.cmo mjmenu.cmo timebis.cmo time.cmo
 	$(CC) $(LINKER) -a -o $@ $^
 
-$(TARGET).cmxa $(TARGET).a: audio.cmx color.cmx image.cmx gif.cmx keyboard.cmx mouse.cmx loader.cmx text.cmx mjwindow.cmx mjmenu.cmx timebis.cmx time.cmx
+$(TARGET).cmxa $(TARGET).a: audio.cmx mjcolor.cmx bindingcolor.cmx mjgraphics.cmx image.cmx gif.cmx keyboard.cmx mouse.cmx loader.cmx text.cmx mjwindow.cmx mjmenu.cmx timebis.cmx time.cmx
 	$(CCOPT) $(LINKER) -a -o $@ $^
 
 %.cmxi: %.mli

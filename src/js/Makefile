@@ -4,14 +4,14 @@ LINKER=-linkall
 SRC=$(wildcard *.ml)
 OBJ=$(SRC:.ml=.cmo)
 CAMLDEP=ocamlfind ocamldep
-TEMP_FILES=time.ml timebis.ml gif.ml
+TEMP_FILES=time.ml timebis.ml gif.ml mjcolor.ml mjmenu.ml mjgraphics.ml
 
 TARGET=libjs
 
 all: .depend $(TARGET).cma
 
 # We need to order the dependencies to link correctly
-$(TARGET).cma: audio.cmo color.cmo image.cmo gif.cmo keyboard.cmo mouse.cmo loader.cmo text.cmo mjwindow.cmo mjmenu.cmo timebis.cmo time.cmo
+$(TARGET).cma: audio.cmo mjcolor.cmo bindingcolor.cmo mjgraphics.cmo image.cmo gif.cmo keyboard.cmo mouse.cmo loader.cmo text.cmo mjwindow.cmo mjmenu.cmo timebis.cmo time.cmo
 	$(CC) $(LINKER) -a -o $@ $^
 
 %.cmi: %.mli

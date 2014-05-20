@@ -1,5 +1,6 @@
 open Time
 open Keyboard
+open Mjgraphics
 
 module ShootCaml =
 struct

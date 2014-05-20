@@ -1,3 +1,5 @@
+open Mjgraphics
+
 let nb_frame = ref 0
 let posy = ref 340.
 let sizeX = ref 15.

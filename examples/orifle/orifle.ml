@@ -1,5 +1,6 @@
 open Keyboard
 open Mouse
+open Mjgraphics
 
 module Orifle =
 struct

@@ -42,10 +42,10 @@ let rw_setRelativePosition rw pos =
 
 let toSfmlColor pstlcolor = 
   (OcsfmlGraphics.Color.rgba 
-	(Color.red_comp pstlcolor) 
-	(Color.green_comp pstlcolor) 
-	(Color.blue_comp pstlcolor) 
-	(int_of_float (Color.alpha_comp pstlcolor *. 255.)))
+	(Mjgraphics.Color.red_comp pstlcolor) 
+	(Mjgraphics.Color.green_comp pstlcolor) 
+	(Mjgraphics.Color.blue_comp pstlcolor) 
+	(int_of_float (Mjgraphics.Color.alpha_comp pstlcolor *. 255.)))
 
 type t = {fen:rw;
 	 background:OcsfmlGraphics.Color.t;
@@ -192,10 +192,10 @@ let create_window x y title framerate bg =
     w#set_framerate_limit framerate;
     {fen = Target w;
      background=(OcsfmlGraphics.Color.rgba 
-			(Color.red_comp bg) 
-			(Color.green_comp bg) 
-			(Color.blue_comp bg) 
-			(int_of_float (Color.alpha_comp bg *. 255.)));
+			(Mjgraphics.Color.red_comp bg) 
+			(Mjgraphics.Color.green_comp bg) 
+			(Mjgraphics.Color.blue_comp bg) 
+			(int_of_float (Mjgraphics.Color.alpha_comp bg *. 255.)));
      font = new OcsfmlGraphics.font (`File "arial.ttf");
      ressources=Loader.initCache 10}
 

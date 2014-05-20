@@ -20,9 +20,9 @@ type t = {items : item list}
 let display_item fen item =
   let col = 
     if isMouseOverItem item fen then
-      Color.red
+      Mjgraphics.Color.red
     else
-      Color.white
+      Mjgraphics.Color.white
   in
   Mjwindow.writeText fen item.text col
 
