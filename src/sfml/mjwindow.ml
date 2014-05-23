@@ -162,9 +162,18 @@ let drawGif fen gif posX posY sizeX sizeY alpha =
 
 let clear fen =
   rw_clear fen.fen fen.background
+
+let rec todo_frame fen =
+  match fen with
+  |Target window -> begin
+    match window#poll_event with
+    | Some e -> if e = OcsfmlWindow.Event.Closed then window#close else todo_frame fen
+    | _ -> ()
+  end
 	
 let rec display fenetre frame b = 
   if isOpen fenetre.fen then begin
+    todo_frame fenetre.fen;
     if b then clear fenetre;
     frame fenetre;
     rw_display fenetre.fen;
@@ -173,6 +182,7 @@ end
 
 let rec display_tm fenetre frame opt b = 
   if isOpen fenetre.fen then begin
+    todo_frame fenetre.fen;
     if b then (
 		clear fenetre;
     let res = frame fenetre opt in
