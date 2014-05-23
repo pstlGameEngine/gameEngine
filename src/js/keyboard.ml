@@ -1,6 +1,4 @@
-module KeyCode =
-struct
-  type t =
+  type keycode =
     A
   | B
   | C
@@ -103,11 +101,8 @@ struct
   | F15
   | Pause
   | Count
-end
+  | Unknown
 
-
-module Keyboard = 
-struct 
     (** Hashtable des etats des touches du clavier 111 touches Max*)
   let keycode_state = Hashtbl.create 111
     
@@ -116,76 +111,77 @@ struct
 	1 -> keyDown
     *)
   let init_keycode_state () = 
-    Hashtbl.add keycode_state KeyCode.A 0;
-    Hashtbl.add keycode_state KeyCode.B 0;
-    Hashtbl.add keycode_state KeyCode.C 0;
-    Hashtbl.add keycode_state KeyCode.D 0;
-    Hashtbl.add keycode_state KeyCode.E 0;
-    Hashtbl.add keycode_state KeyCode.F 0;
-    Hashtbl.add keycode_state KeyCode.G 0;
-    Hashtbl.add keycode_state KeyCode.H 0;
-    Hashtbl.add keycode_state KeyCode.I 0;
-    Hashtbl.add keycode_state KeyCode.J 0;
-    Hashtbl.add keycode_state KeyCode.K 0;
-    Hashtbl.add keycode_state KeyCode.L 0;
-    Hashtbl.add keycode_state KeyCode.M 0;
-    Hashtbl.add keycode_state KeyCode.N 0;
-    Hashtbl.add keycode_state KeyCode.O 0;
-    Hashtbl.add keycode_state KeyCode.P 0;
-    Hashtbl.add keycode_state KeyCode.Q 0;
-    Hashtbl.add keycode_state KeyCode.R 0;
-    Hashtbl.add keycode_state KeyCode.S 0;
-    Hashtbl.add keycode_state KeyCode.T 0;
-    Hashtbl.add keycode_state KeyCode.U 0;
-    Hashtbl.add keycode_state KeyCode.V 0;
-    Hashtbl.add keycode_state KeyCode.W 0;
-    Hashtbl.add keycode_state KeyCode.X 0;
-    Hashtbl.add keycode_state KeyCode.Y 0;
-    Hashtbl.add keycode_state KeyCode.Z 0;
-    Hashtbl.add keycode_state KeyCode.Space 0;
-    Hashtbl.add keycode_state KeyCode.Escape 0;
-    Hashtbl.add keycode_state KeyCode.Return 0;
-    Hashtbl.add keycode_state KeyCode.Up 0;
-    Hashtbl.add keycode_state KeyCode.Down 0;
-    Hashtbl.add keycode_state KeyCode.Left 0;
-    Hashtbl.add keycode_state KeyCode.Right 0
+    Hashtbl.add keycode_state A false;
+    Hashtbl.add keycode_state B false;
+    Hashtbl.add keycode_state C false;
+    Hashtbl.add keycode_state D false;
+    Hashtbl.add keycode_state E false;
+    Hashtbl.add keycode_state F false;
+    Hashtbl.add keycode_state G false;
+    Hashtbl.add keycode_state H false;
+    Hashtbl.add keycode_state I false;
+    Hashtbl.add keycode_state J false;
+    Hashtbl.add keycode_state K false;
+    Hashtbl.add keycode_state L false;
+    Hashtbl.add keycode_state M false;
+    Hashtbl.add keycode_state N false;
+    Hashtbl.add keycode_state O false;
+    Hashtbl.add keycode_state P false;
+    Hashtbl.add keycode_state Q false;
+    Hashtbl.add keycode_state R false;
+    Hashtbl.add keycode_state S false;
+    Hashtbl.add keycode_state T false;
+    Hashtbl.add keycode_state U false;
+    Hashtbl.add keycode_state V false;
+    Hashtbl.add keycode_state W false;
+    Hashtbl.add keycode_state X false;
+    Hashtbl.add keycode_state Y false;
+    Hashtbl.add keycode_state Z false;
+    Hashtbl.add keycode_state Space false;
+    Hashtbl.add keycode_state Escape false;
+    Hashtbl.add keycode_state Return false;
+    Hashtbl.add keycode_state Up false;
+    Hashtbl.add keycode_state Down false;
+    Hashtbl.add keycode_state Left false;
+    Hashtbl.add keycode_state Right false
 
     (** Association des KeyCode a un ASCII *)
   let get_KeyCode key =
     match key with
-    | 65 -> KeyCode.A
-    | 66 -> KeyCode.B
-    | 67 -> KeyCode.C
-    | 68 -> KeyCode.D
-    | 69 -> KeyCode.E
-    | 70 -> KeyCode.F
-    | 71 -> KeyCode.G
-    | 72 -> KeyCode.H
-    | 73 -> KeyCode.I
-    | 74 -> KeyCode.J
-    | 75 -> KeyCode.K
-    | 76 -> KeyCode.L
-    | 77 -> KeyCode.M
-    | 78 -> KeyCode.N
-    | 79 -> KeyCode.O
-    | 80 -> KeyCode.P
-    | 81 -> KeyCode.Q
-    | 82 -> KeyCode.R
-    | 83 -> KeyCode.S
-    | 84 -> KeyCode.T
-    | 85 -> KeyCode.U
-    | 86 -> KeyCode.V
-    | 87 -> KeyCode.W
-    | 88 -> KeyCode.X
-    | 89 -> KeyCode.Y
-    | 90 -> KeyCode.Z
-    | 32 -> KeyCode.Space
-    | 27 -> KeyCode.Escape
-    |  9 -> KeyCode.Return
-    | 37 -> KeyCode.Left
-    | 38 -> KeyCode.Up
-    | 39 -> KeyCode.Right
-    | 40 -> KeyCode.Down
+    | 65 -> A
+    | 66 -> B
+    | 67 -> C
+    | 68 -> D
+    | 69 -> E
+    | 70 -> F
+    | 71 -> G
+    | 72 -> H
+    | 73 -> I
+    | 74 -> J
+    | 75 -> K
+    | 76 -> L
+    | 77 -> M
+    | 78 -> N
+    | 79 -> O
+    | 80 -> P
+    | 81 -> Q
+    | 82 -> R
+    | 83 -> S
+    | 84 -> T
+    | 85 -> U
+    | 86 -> V
+    | 87 -> W
+    | 88 -> X
+    | 89 -> Y
+    | 90 -> Z
+    | 32 -> Space
+    | 27 -> Escape
+    |  9 -> Return
+    | 37 -> Left
+    | 38 -> Up
+    | 39 -> Right
+    | 40 -> Down
+    | _  -> Unknown
       
     (** Enregistre dans un tableau tout les events keyboard *)
   let rec_down_keyboard_evt () =
@@ -195,39 +191,39 @@ struct
 	let ev =  get_KeyCode evt##keyCode in
 	begin 
 	match ev with 
-	| KeyCode.A -> Hashtbl.replace keycode_state KeyCode.A 1
-	| KeyCode.B -> Hashtbl.replace keycode_state KeyCode.B 1
-	| KeyCode.C -> Hashtbl.replace keycode_state KeyCode.C 1
-	| KeyCode.D -> Hashtbl.replace keycode_state KeyCode.D 1
-	| KeyCode.E -> Hashtbl.replace keycode_state KeyCode.E 1
-	| KeyCode.F -> Hashtbl.replace keycode_state KeyCode.F 1
-	| KeyCode.G -> Hashtbl.replace keycode_state KeyCode.G 1
-	| KeyCode.H -> Hashtbl.replace keycode_state KeyCode.H 1
-	| KeyCode.I -> Hashtbl.replace keycode_state KeyCode.I 1
-	| KeyCode.J -> Hashtbl.replace keycode_state KeyCode.J 1
-	| KeyCode.K -> Hashtbl.replace keycode_state KeyCode.K 1
-	| KeyCode.L -> Hashtbl.replace keycode_state KeyCode.L 1
-	| KeyCode.M -> Hashtbl.replace keycode_state KeyCode.M 1
-	| KeyCode.N -> Hashtbl.replace keycode_state KeyCode.N 1
-	| KeyCode.O -> Hashtbl.replace keycode_state KeyCode.O 1
-	| KeyCode.P -> Hashtbl.replace keycode_state KeyCode.P 1
-	| KeyCode.Q -> Hashtbl.replace keycode_state KeyCode.Q 1
-	| KeyCode.R -> Hashtbl.replace keycode_state KeyCode.R 1
-	| KeyCode.S -> Hashtbl.replace keycode_state KeyCode.S 1
-	| KeyCode.T -> Hashtbl.replace keycode_state KeyCode.T 1
-	| KeyCode.U -> Hashtbl.replace keycode_state KeyCode.U 1
-	| KeyCode.V -> Hashtbl.replace keycode_state KeyCode.V 1
-	| KeyCode.W -> Hashtbl.replace keycode_state KeyCode.W 1
-	| KeyCode.X -> Hashtbl.replace keycode_state KeyCode.X 1
-	| KeyCode.Y -> Hashtbl.replace keycode_state KeyCode.Y 1
-	| KeyCode.Z -> Hashtbl.replace keycode_state KeyCode.Z 1
-	| KeyCode.Space	 -> Hashtbl.replace keycode_state KeyCode.Space 1
-	| KeyCode.Escape -> Hashtbl.replace keycode_state KeyCode.Escape 1
-	| KeyCode.Return -> Hashtbl.replace keycode_state KeyCode.Return 1
-	| KeyCode.Up	 -> Hashtbl.replace keycode_state KeyCode.Up 1
-	| KeyCode.Down	 -> Hashtbl.replace keycode_state KeyCode.Down 1
-	| KeyCode.Left	 -> Hashtbl.replace keycode_state KeyCode.Left 1
-	| KeyCode.Right	 -> Hashtbl.replace keycode_state KeyCode.Right 1
+	| A -> Hashtbl.replace keycode_state A true
+	| B -> Hashtbl.replace keycode_state B true
+	| C -> Hashtbl.replace keycode_state C true
+	| D -> Hashtbl.replace keycode_state D true
+	| E -> Hashtbl.replace keycode_state E true
+	| F -> Hashtbl.replace keycode_state F true
+	| G -> Hashtbl.replace keycode_state G true
+	| H -> Hashtbl.replace keycode_state H true
+	| I -> Hashtbl.replace keycode_state I true
+	| J -> Hashtbl.replace keycode_state J true
+	| K -> Hashtbl.replace keycode_state K true
+	| L -> Hashtbl.replace keycode_state L true
+	| M -> Hashtbl.replace keycode_state M true
+	| N -> Hashtbl.replace keycode_state N true
+	| O -> Hashtbl.replace keycode_state O true
+	| P -> Hashtbl.replace keycode_state P true
+	| Q -> Hashtbl.replace keycode_state Q true
+	| R -> Hashtbl.replace keycode_state R true
+	| S -> Hashtbl.replace keycode_state S true
+	| T -> Hashtbl.replace keycode_state T true
+	| U -> Hashtbl.replace keycode_state U true
+	| V -> Hashtbl.replace keycode_state V true
+	| W -> Hashtbl.replace keycode_state W true
+	| X -> Hashtbl.replace keycode_state X true
+	| Y -> Hashtbl.replace keycode_state Y true
+	| Z -> Hashtbl.replace keycode_state Z true
+	| Space	 -> Hashtbl.replace keycode_state Space true
+	| Escape -> Hashtbl.replace keycode_state Escape true
+	| Return -> Hashtbl.replace keycode_state Return true
+	| Up	 -> Hashtbl.replace keycode_state Up true
+	| Down	 -> Hashtbl.replace keycode_state Down true
+	| Left	 -> Hashtbl.replace keycode_state Left true
+	| Right	 -> Hashtbl.replace keycode_state Right true
 	| _ -> ();
 	end;
 	Js._true;
@@ -241,49 +237,46 @@ struct
 	let ev =  get_KeyCode evt##keyCode in
 	begin 
 	match ev with
-	| KeyCode.A -> Hashtbl.replace keycode_state KeyCode.A 0
-	| KeyCode.B -> Hashtbl.replace keycode_state KeyCode.B 0
-	| KeyCode.C -> Hashtbl.replace keycode_state KeyCode.C 0
-	| KeyCode.D -> Hashtbl.replace keycode_state KeyCode.D 0
-	| KeyCode.E -> Hashtbl.replace keycode_state KeyCode.E 0
-	| KeyCode.F -> Hashtbl.replace keycode_state KeyCode.F 0
-	| KeyCode.G -> Hashtbl.replace keycode_state KeyCode.G 0
-	| KeyCode.H -> Hashtbl.replace keycode_state KeyCode.H 0
-	| KeyCode.I -> Hashtbl.replace keycode_state KeyCode.I 0
-	| KeyCode.J -> Hashtbl.replace keycode_state KeyCode.J 0
-	| KeyCode.K -> Hashtbl.replace keycode_state KeyCode.K 0
-	| KeyCode.L -> Hashtbl.replace keycode_state KeyCode.L 0
-	| KeyCode.M -> Hashtbl.replace keycode_state KeyCode.M 0
-	| KeyCode.N -> Hashtbl.replace keycode_state KeyCode.N 0
-	| KeyCode.O -> Hashtbl.replace keycode_state KeyCode.O 0
-	| KeyCode.P -> Hashtbl.replace keycode_state KeyCode.P 0
-	| KeyCode.Q -> Hashtbl.replace keycode_state KeyCode.Q 0
-	| KeyCode.R -> Hashtbl.replace keycode_state KeyCode.R 0
-	| KeyCode.S -> Hashtbl.replace keycode_state KeyCode.S 0
-	| KeyCode.T -> Hashtbl.replace keycode_state KeyCode.T 0
-	| KeyCode.U -> Hashtbl.replace keycode_state KeyCode.U 0
-	| KeyCode.V -> Hashtbl.replace keycode_state KeyCode.V 0
-	| KeyCode.W -> Hashtbl.replace keycode_state KeyCode.W 0
-	| KeyCode.X -> Hashtbl.replace keycode_state KeyCode.X 0
-	| KeyCode.Y -> Hashtbl.replace keycode_state KeyCode.Y 0
-	| KeyCode.Z -> Hashtbl.replace keycode_state KeyCode.Z 0
-	| KeyCode.Space	-> Hashtbl.replace keycode_state KeyCode.Space 0
-	| KeyCode.Escape -> Hashtbl.replace keycode_state KeyCode.Escape 0
-	| KeyCode.Return -> Hashtbl.replace keycode_state KeyCode.Return 0
-	| KeyCode.Up	-> Hashtbl.replace keycode_state KeyCode.Up 0
-	| KeyCode.Down	-> Hashtbl.replace keycode_state KeyCode.Down 0
-	| KeyCode.Left	-> Hashtbl.replace keycode_state KeyCode.Left 0
-	| KeyCode.Right	-> Hashtbl.replace keycode_state KeyCode.Right 0
+	| A -> Hashtbl.replace keycode_state A false
+	| B -> Hashtbl.replace keycode_state B false
+	| C -> Hashtbl.replace keycode_state C false
+	| D -> Hashtbl.replace keycode_state D false
+	| E -> Hashtbl.replace keycode_state E false
+	| F -> Hashtbl.replace keycode_state F false
+	| G -> Hashtbl.replace keycode_state G false
+	| H -> Hashtbl.replace keycode_state H false
+	| I -> Hashtbl.replace keycode_state I false
+	| J -> Hashtbl.replace keycode_state J false
+	| K -> Hashtbl.replace keycode_state K false
+	| L -> Hashtbl.replace keycode_state L false
+	| M -> Hashtbl.replace keycode_state M false
+	| N -> Hashtbl.replace keycode_state N false
+	| O -> Hashtbl.replace keycode_state O false
+	| P -> Hashtbl.replace keycode_state P false
+	| Q -> Hashtbl.replace keycode_state Q false
+	| R -> Hashtbl.replace keycode_state R false
+	| S -> Hashtbl.replace keycode_state S false
+	| T -> Hashtbl.replace keycode_state T false
+	| U -> Hashtbl.replace keycode_state U false
+	| V -> Hashtbl.replace keycode_state V false
+	| W -> Hashtbl.replace keycode_state W false
+	| X -> Hashtbl.replace keycode_state X false
+	| Y -> Hashtbl.replace keycode_state Y false
+	| Z -> Hashtbl.replace keycode_state Z false
+	| Space	-> Hashtbl.replace keycode_state Space false
+	| Escape -> Hashtbl.replace keycode_state Escape false
+	| Return -> Hashtbl.replace keycode_state Return false
+	| Up	-> Hashtbl.replace keycode_state Up false
+	| Down	-> Hashtbl.replace keycode_state Down false
+	| Left	-> Hashtbl.replace keycode_state Left false
+	| Right	-> Hashtbl.replace keycode_state Right false
 	| _ -> ();
 	end;
 	  Js._true;
       )
 
-  let is_key_pressed key =
-    (Hashtbl.find keycode_state key) = 1 
+  let is_key_pressed key = (Hashtbl.find keycode_state key)
 
   let update () =
     rec_down_keyboard_evt ();
     rec_up_keyboard_evt ();
-    
-end 

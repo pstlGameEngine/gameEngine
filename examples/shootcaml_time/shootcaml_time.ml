@@ -1,5 +1,4 @@
 open Time
-open Keyboard
 open Mjgraphics
 
 module ShootCaml =
@@ -90,12 +89,12 @@ struct
 
   (************** Events  ******************)
   let eventSpace state =
-    if Keyboard.is_key_pressed KeyCode.Space && not !boolMissil then (
+    if Keyboard.is_key_pressed Keyboard.Space && not !boolMissil then (
       Audio.Sound.set_volume shotSound 40.;
       Audio.Sound.play shotSound;
       boolMissil := true;
       create_bullet state;
-    ) else if !boolMissil && not (Keyboard.is_key_pressed KeyCode.Space) then(
+    ) else if !boolMissil && not (Keyboard.is_key_pressed Keyboard.Space) then(
       boolMissil := false;
       [] (* hack *)
     )else
@@ -118,25 +117,25 @@ struct
       
 
   let eventKeyBoard state = 
-    if Keyboard.is_key_pressed KeyCode.Up 
-      && Keyboard.is_key_pressed KeyCode.Left then 
+    if Keyboard.is_key_pressed Keyboard.Up 
+      && Keyboard.is_key_pressed Keyboard.Left then 
       moveShip 4 (-1.) (-1.) state
-    else if Keyboard.is_key_pressed KeyCode.Up 
-	&& Keyboard.is_key_pressed KeyCode.Right then 
+    else if Keyboard.is_key_pressed Keyboard.Up 
+	&& Keyboard.is_key_pressed Keyboard.Right then 
       moveShip 6 (1.) (-1.) state
-    else if Keyboard.is_key_pressed KeyCode.Down 
-	&& Keyboard.is_key_pressed KeyCode.Right then 
+    else if Keyboard.is_key_pressed Keyboard.Down 
+	&& Keyboard.is_key_pressed Keyboard.Right then 
       moveShip 5 (1.) (1.) state
-    else if Keyboard.is_key_pressed KeyCode.Down
-	&& Keyboard.is_key_pressed KeyCode.Left then 
+    else if Keyboard.is_key_pressed Keyboard.Down
+	&& Keyboard.is_key_pressed Keyboard.Left then 
       moveShip 7 (-1.) (1.) state
-    else if Keyboard.is_key_pressed KeyCode.Up then
+    else if Keyboard.is_key_pressed Keyboard.Up then
       moveShip 0 (0.) (-1.) state
-    else if Keyboard.is_key_pressed KeyCode.Down then 
+    else if Keyboard.is_key_pressed Keyboard.Down then 
       moveShip 1 (0.) (1.) state
-    else if Keyboard.is_key_pressed KeyCode.Left then
+    else if Keyboard.is_key_pressed Keyboard.Left then
       moveShip 2 (-1.) (0.) state
-    else if Keyboard.is_key_pressed KeyCode.Right then
+    else if Keyboard.is_key_pressed Keyboard.Right then
       moveShip 3 (1.) (0.) state 
     else 
       state.ship
@@ -309,28 +308,28 @@ struct
    	Mjwindow.writeText fen textPause Color.red 
     );
     
-    if Keyboard.is_key_pressed KeyCode.P then(
+    if Keyboard.is_key_pressed Keyboard.P then(
       head := 0;
       isPause := true
     );
     
-    if Keyboard.is_key_pressed KeyCode.S then( 
+    if Keyboard.is_key_pressed Keyboard.S then( 
       head := 1;
       start := true;
       isPause := false
     );
     
-    if Keyboard.is_key_pressed KeyCode.B then(
+    if Keyboard.is_key_pressed Keyboard.B then(
       head := 2;
       isPause := false
     );
 
-    if Keyboard.is_key_pressed KeyCode.A then( 
+    if Keyboard.is_key_pressed Keyboard.A then( 
       head := 3;
       start := true;
       isPause := false
     );
-    if Keyboard.is_key_pressed KeyCode.R then(
+    if Keyboard.is_key_pressed Keyboard.R then(
       if not !alive then (
 	tree := 1;
 	start := true;
@@ -339,13 +338,13 @@ struct
 	scoreRef := 0
       )
     );
-    if Keyboard.is_key_pressed KeyCode.N then(
+    if Keyboard.is_key_pressed Keyboard.N then(
       head := 4;
       isPause := false
     );
 
     
-    if Keyboard.is_key_pressed KeyCode.Escape then (
+    if Keyboard.is_key_pressed Keyboard.Escape then (
       Mjwindow.close fen;
       Audio.Sound.destroy shotSound;
       Audio.Sound.destroy gameoverSound;

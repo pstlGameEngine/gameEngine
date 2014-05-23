@@ -1,4 +1,3 @@
-open Keyboard
 open Mjgraphics
 
 (* utils *)
@@ -294,18 +293,18 @@ struct
       else 
 	false
     in
-    Keyboard.is_key_pressed KeyCode.B && f ()
+    Keyboard.is_key_pressed Keyboard.B && f ()
 
   let changeStateWithEvent state win = 
-    if Keyboard.is_key_pressed KeyCode.Down
+    if Keyboard.is_key_pressed Keyboard.Down
       && state.pstate.y < map_lower_bound 
       && not state.pstate.is_shooting then
       change_player_pos state state.pstate.x (state.pstate.y +. 2.)
-    else if Keyboard.is_key_pressed KeyCode.Up 
+    else if Keyboard.is_key_pressed Keyboard.Up 
 	&& state.pstate.y > map_upper_bound 
 	&& not state.pstate.is_shooting then
       change_player_pos state state.pstate.x (state.pstate.y -. 2.)
-    else if Keyboard.is_key_pressed KeyCode.Space 
+    else if Keyboard.is_key_pressed Keyboard.Space 
 	&& (not state.pstate.is_shooting) then
       begin
         shot_sound ();

@@ -1,6 +1,4 @@
-module KeyCode =
-struct
-  type t =
+  type keycode =
     A
   | B
   | C
@@ -103,51 +101,50 @@ struct
   | F15
   | Pause
   | Count
-end
+  | Unknown
 
-
-module Keyboard = 
-struct 
-  let get_Code key =
+  let toSfml key =
     match key with
-      KeyCode.A -> OcsfmlWindow.KeyCode.A
-    | KeyCode.B -> OcsfmlWindow.KeyCode.B
-    | KeyCode.C -> OcsfmlWindow.KeyCode.C
-    | KeyCode.D -> OcsfmlWindow.KeyCode.D
-    | KeyCode.E -> OcsfmlWindow.KeyCode.E
-    | KeyCode.F -> OcsfmlWindow.KeyCode.F
-    | KeyCode.G -> OcsfmlWindow.KeyCode.G
-    | KeyCode.H -> OcsfmlWindow.KeyCode.H
-    | KeyCode.I -> OcsfmlWindow.KeyCode.I
-    | KeyCode.J -> OcsfmlWindow.KeyCode.J
-    | KeyCode.K -> OcsfmlWindow.KeyCode.K
-    | KeyCode.L -> OcsfmlWindow.KeyCode.L
-    | KeyCode.M -> OcsfmlWindow.KeyCode.M
-    | KeyCode.N -> OcsfmlWindow.KeyCode.N
-    | KeyCode.O -> OcsfmlWindow.KeyCode.O
-    | KeyCode.P -> OcsfmlWindow.KeyCode.P
-    | KeyCode.Q -> OcsfmlWindow.KeyCode.Q
-    | KeyCode.R -> OcsfmlWindow.KeyCode.R
-    | KeyCode.S -> OcsfmlWindow.KeyCode.S
-    | KeyCode.T -> OcsfmlWindow.KeyCode.T
-    | KeyCode.U -> OcsfmlWindow.KeyCode.U
-    | KeyCode.V -> OcsfmlWindow.KeyCode.V
-    | KeyCode.W -> OcsfmlWindow.KeyCode.W
-    | KeyCode.X -> OcsfmlWindow.KeyCode.X
-    | KeyCode.Y -> OcsfmlWindow.KeyCode.Y
-    | KeyCode.Z -> OcsfmlWindow.KeyCode.Z
-    | KeyCode.Space -> OcsfmlWindow.KeyCode.Space
-    | KeyCode.Escape -> OcsfmlWindow.KeyCode.Escape
-    | KeyCode.Up -> OcsfmlWindow.KeyCode.Up
-    | KeyCode.Down -> OcsfmlWindow.KeyCode.Down
-    | KeyCode.Left -> OcsfmlWindow.KeyCode.Left
-    | KeyCode.Right -> OcsfmlWindow.KeyCode.Right
-    | KeyCode.Return -> OcsfmlWindow.KeyCode.Return
-    | _ -> OcsfmlWindow.KeyCode.Pause
+      A -> OcsfmlWindow.KeyCode.A
+    | B -> OcsfmlWindow.KeyCode.B
+    | C -> OcsfmlWindow.KeyCode.C
+    | D -> OcsfmlWindow.KeyCode.D
+    | E -> OcsfmlWindow.KeyCode.E
+    | F -> OcsfmlWindow.KeyCode.F
+    | G -> OcsfmlWindow.KeyCode.G
+    | H -> OcsfmlWindow.KeyCode.H
+    | I -> OcsfmlWindow.KeyCode.I
+    | J -> OcsfmlWindow.KeyCode.J
+    | K -> OcsfmlWindow.KeyCode.K
+    | L -> OcsfmlWindow.KeyCode.L
+    | M -> OcsfmlWindow.KeyCode.M
+    | N -> OcsfmlWindow.KeyCode.N
+    | O -> OcsfmlWindow.KeyCode.O
+    | P -> OcsfmlWindow.KeyCode.P
+    | Q -> OcsfmlWindow.KeyCode.Q
+    | R -> OcsfmlWindow.KeyCode.R
+    | S -> OcsfmlWindow.KeyCode.S
+    | T -> OcsfmlWindow.KeyCode.T
+    | U -> OcsfmlWindow.KeyCode.U
+    | V -> OcsfmlWindow.KeyCode.V
+    | W -> OcsfmlWindow.KeyCode.W
+    | X -> OcsfmlWindow.KeyCode.X
+    | Y -> OcsfmlWindow.KeyCode.Y
+    | Z -> OcsfmlWindow.KeyCode.Z
+    | Space  -> OcsfmlWindow.KeyCode.Space
+    | Escape -> OcsfmlWindow.KeyCode.Escape
+    | Up     -> OcsfmlWindow.KeyCode.Up
+    | Down   -> OcsfmlWindow.KeyCode.Down
+    | Left   -> OcsfmlWindow.KeyCode.Left
+    | Right  -> OcsfmlWindow.KeyCode.Right
+    | Return -> OcsfmlWindow.KeyCode.Return
+    | _       -> OcsfmlWindow.KeyCode.Pause
 
   let keycode_state = Hashtbl.create 0
   let init_keycode_state () = ()
   let update () = ()
 	
-  let is_key_pressed key = OcsfmlWindow.Keyboard.is_key_pressed (get_Code key)
-end
+  let is_key_pressed key = 
+    match key with
+    | Unknown -> false
+    | _ -> OcsfmlWindow.Keyboard.is_key_pressed (toSfml key)

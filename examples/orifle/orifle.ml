@@ -1,4 +1,3 @@
-open Keyboard
 open Mouse
 open Mjgraphics
 
@@ -69,13 +68,13 @@ struct
     {sx=x; sy=y; svitesseX=vx}
 
   let bonusSound () =
-    let sound_buffer = Audio.SoundBuffer.create_sound_buffer "bonus.wav" in
+    let sound_buffer = Audio.SoundBuffer.create_sound_buffer "ressources/bonus.wav" in
       let sound = Audio.Sound.create_from_sound_buffer sound_buffer in
         Audio.Sound.set_volume sound 5.;
         Audio.Sound.play sound
 
   let bonusBreak () =
-    let sound_buffer = Audio.SoundBuffer.create_sound_buffer "glass.wav" in
+    let sound_buffer = Audio.SoundBuffer.create_sound_buffer "ressources/glass.wav" in
       let sound = Audio.Sound.create_from_sound_buffer sound_buffer in
         Audio.Sound.set_volume sound 50.;
         Audio.Sound.play sound
@@ -126,16 +125,16 @@ struct
 
   let init fen =
     Random.self_init();
-    let image = Image.create_from_file "grande_rue.png"
-    and gif0 = Image.create_from_file "w-0.png"
-    and gif1 = Image.create_from_file "w-1.png"
-    and gif2 = Image.create_from_file "w-2.png"
-    and gif3 = Image.create_from_file "w-3.png"
-    and gif4 = Image.create_from_file "w-4.png"
-    and viseur = Image.create_from_file "viseur.png"
-    and impact = Image.create_from_file "impact2.png"
-    and gun1 = Image.create_from_file "gun2.png"
-    and sab = Image.create_from_file "sab.png"
+    let image = Image.create_from_file "ressources/grande_rue.png"
+    and gif0 = Image.create_from_file "ressources/w-0.png"
+    and gif1 = Image.create_from_file "ressources/w-1.png"
+    and gif2 = Image.create_from_file "ressources/w-2.png"
+    and gif3 = Image.create_from_file "ressources/w-3.png"
+    and gif4 = Image.create_from_file "ressources/w-4.png"
+    and viseur = Image.create_from_file "ressources/viseur.png"
+    and impact = Image.create_from_file "ressources/impact2.png"
+    and gun1 = Image.create_from_file "ressources/gun2.png"
+    and sab = Image.create_from_file "ressources/sab.png"
     in 
       let ressources = [image;gif0;gif1;gif2;gif3;gif4;viseur;impact;gun1;sab] in
         Mjwindow.explicit_load fen ressources;
@@ -165,7 +164,7 @@ struct
       res
 
   let backInTimeCondition etat = 
-    Keyboard.is_key_pressed KeyCode.B && (backintime ())
+    Keyboard.is_key_pressed Keyboard.B && (backintime ())
     
   let bornerX sizeX x =   
     min (sizeX -. 146.) (max x 146.)
@@ -251,13 +250,13 @@ struct
 		  cibles = newL}
 
   let gunShot () =
-    let sound_buffer = Audio.SoundBuffer.create_sound_buffer "gun.wav" in
+    let sound_buffer = Audio.SoundBuffer.create_sound_buffer "ressources/gun.wav" in
       let sound = Audio.Sound.create_from_sound_buffer sound_buffer in
         Audio.Sound.set_volume sound 5.;
         Audio.Sound.play sound
 
   let gunReload () =
-    let sound_buffer = Audio.SoundBuffer.create_sound_buffer "gun_reload.wav" in
+    let sound_buffer = Audio.SoundBuffer.create_sound_buffer "ressources/gun_reload.wav" in
       let sound = Audio.Sound.create_from_sound_buffer sound_buffer in
         Audio.Sound.set_volume sound 15.;
         Audio.Sound.play sound
@@ -280,7 +279,7 @@ struct
     match state with
     | Pause (m,s) ->
 	if (Mjmenu.isClickedItem (Mjmenu.getItem m 0) fen) 
-	|| Keyboard.is_key_pressed KeyCode.Space then
+	|| Keyboard.is_key_pressed Keyboard.Space then
           Ingame s
         else if (Mjmenu.isClickedItem (Mjmenu.getItem m 1) fen) then
           Help ((Mjmenu.makeMenu fen ["BACK"]),state)
@@ -289,7 +288,7 @@ struct
         else state
     | Menu (m,r)->
 	if (Mjmenu.isClickedItem (Mjmenu.getItem m 0) fen)
-        || Keyboard.is_key_pressed KeyCode.Space then
+        || Keyboard.is_key_pressed Keyboard.Space then
           Ingame (init_ingame {sizeX=w;sizeY=h;images=r})
         else if (Mjmenu.isClickedItem (Mjmenu.getItem m 1) fen) then
           Help ((Mjmenu.makeMenu fen ["BACK"]),state)
@@ -302,7 +301,7 @@ struct
             in let newS = {current_state with posX = fst (float_coord pos); 
 		                              posY = snd (float_coord pos)}
               in
-	        if Keyboard.is_key_pressed KeyCode.P then
+	        if Keyboard.is_key_pressed Keyboard.P then
                   Pause (Mjmenu.makeMenu fen ["CONTINUE";"HELP";"EXIT"],newS)
                 else if Mouse.is_button_pressed MouseButton.LeftButton then
 		  Ingame (fire newS fen)

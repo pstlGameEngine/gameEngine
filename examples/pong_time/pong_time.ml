@@ -1,4 +1,3 @@
-open Keyboard
 open Mjgraphics
 
 module Pong =
@@ -92,7 +91,7 @@ struct
     | Ingame _ -> true
     | _ -> false
 
-  let backInTimeCondition etat = Keyboard.is_key_pressed KeyCode.B
+  let backInTimeCondition etat = Keyboard.is_key_pressed Keyboard.B
 
   let addVitesseXObj obj vit =	
     match obj.vitesseX *. vit <= 0. with
@@ -123,25 +122,25 @@ struct
     match state with
     | Pause (m,s) ->
 	if (Mjmenu.isClickedItem (Mjmenu.getItem m 0) fen) 
-	|| Keyboard.is_key_pressed KeyCode.Space then
+	|| Keyboard.is_key_pressed Keyboard.Space then
           Ingame (s)
         else if (Mjmenu.isClickedItem (Mjmenu.getItem m 1) fen) then
            begin Mjwindow.close fen; state end
         else state
     | Menu m->
 	if (Mjmenu.isClickedItem (Mjmenu.getItem m 0) fen)
-        || Keyboard.is_key_pressed KeyCode.Space then
+        || Keyboard.is_key_pressed Keyboard.Space then
           Ingame (init_ingame {sizeRaquette=100.;sizeBalle=10.;sizeField=400.})
         else if (Mjmenu.isClickedItem (Mjmenu.getItem m 1) fen) then
            begin Mjwindow.close fen; state end
         else state
     | Ingame current_state -> 
         begin
-	  if Keyboard.is_key_pressed KeyCode.P then
+	  if Keyboard.is_key_pressed Keyboard.P then
             Pause (Mjmenu.makeMenu fen ["CONTINUE";"EXIT"],current_state)
-          else if Keyboard.is_key_pressed KeyCode.Left then
+          else if Keyboard.is_key_pressed Keyboard.Left then
             Ingame (setVitesseRaqA current_state (-10.))
-          else if Keyboard.is_key_pressed KeyCode.Right then
+          else if Keyboard.is_key_pressed Keyboard.Right then
             Ingame (setVitesseRaqA current_state (10.))
           else
             Ingame (stopRaqA current_state)

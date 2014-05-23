@@ -13,7 +13,6 @@
     val drawState : Mjwindow.t -> state -> unit
     val drawGhosts : Mjwindow.t -> state -> unit
 end*)
-open Keyboard
 open Mjgraphics
 
 module Pacman =
@@ -165,13 +164,13 @@ module Pacman =
 
   let changeStateWithEvent s fen = 
         begin
-	  if Keyboard.is_key_pressed KeyCode.Left then
+	  if Keyboard.is_key_pressed Keyboard.Left then
             movePacman s Left
-          else if Keyboard.is_key_pressed KeyCode.Right then
+          else if Keyboard.is_key_pressed Keyboard.Right then
             movePacman s Right
-          else if Keyboard.is_key_pressed KeyCode.Up then
+          else if Keyboard.is_key_pressed Keyboard.Up then
             movePacman s Down
-          else if Keyboard.is_key_pressed KeyCode.Down then
+          else if Keyboard.is_key_pressed Keyboard.Down then
             movePacman s Up
           else
            s
@@ -179,7 +178,7 @@ module Pacman =
 
   let recordCondition s = true
 
-  let backInTimeCondition s = Keyboard.is_key_pressed KeyCode.B
+  let backInTimeCondition s = Keyboard.is_key_pressed Keyboard.B
 
   let drawGhosts fen s = ()
 

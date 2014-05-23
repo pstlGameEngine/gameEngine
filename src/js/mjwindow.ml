@@ -1,7 +1,6 @@
 open Dom_html
 open Text
 open Image
-open Keyboard
 open Mouse
 
 type timer = None | Timer of interval_id

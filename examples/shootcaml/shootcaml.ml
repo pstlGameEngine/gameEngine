@@ -1,4 +1,3 @@
-open Keyboard
 open Mjgraphics
 
 (************* Dimention de la fenetre de jeux ****************)
@@ -64,34 +63,34 @@ let create_bullet () =
   bulletList := b::!bulletList
 
 let eventKeyBoard () = 
-  if Keyboard.is_key_pressed KeyCode.Up 
-    && Keyboard.is_key_pressed KeyCode.Left then 
+  if Keyboard.is_key_pressed Keyboard.Up 
+    && Keyboard.is_key_pressed Keyboard.Left then 
     moveShip 4 (-1.) (-1.)
-  else if Keyboard.is_key_pressed KeyCode.Up 
-      && Keyboard.is_key_pressed KeyCode.Right then 
+  else if Keyboard.is_key_pressed Keyboard.Up 
+      && Keyboard.is_key_pressed Keyboard.Right then 
     moveShip 6 (1.) (-1.)
-  else if Keyboard.is_key_pressed KeyCode.Down 
-      && Keyboard.is_key_pressed KeyCode.Right then 
+  else if Keyboard.is_key_pressed Keyboard.Down 
+      && Keyboard.is_key_pressed Keyboard.Right then 
     moveShip 5 (1.) (1.)
-  else if Keyboard.is_key_pressed KeyCode.Down
-      && Keyboard.is_key_pressed KeyCode.Left then 
+  else if Keyboard.is_key_pressed Keyboard.Down
+      && Keyboard.is_key_pressed Keyboard.Left then 
     moveShip 7 (-1.) (1.)
-  else if Keyboard.is_key_pressed KeyCode.Up then
+  else if Keyboard.is_key_pressed Keyboard.Up then
     moveShip 0 (0.) (-1.)
-  else if Keyboard.is_key_pressed KeyCode.Down then 
+  else if Keyboard.is_key_pressed Keyboard.Down then 
     moveShip 1 (0.) (1.)
-  else if Keyboard.is_key_pressed KeyCode.Left then
+  else if Keyboard.is_key_pressed Keyboard.Left then
     moveShip 2 (-1.) (0.)
-  else if Keyboard.is_key_pressed KeyCode.Right then
+  else if Keyboard.is_key_pressed Keyboard.Right then
     moveShip 3 (1.) (0.)
-  else if Keyboard.is_key_pressed KeyCode.Escape then 
+  else if Keyboard.is_key_pressed Keyboard.Escape then 
     Mjwindow.close fen
       
 let eventSpace () =
-  if Keyboard.is_key_pressed KeyCode.Space && not !boolMissil then (
+  if Keyboard.is_key_pressed Keyboard.Space && not !boolMissil then (
     create_bullet ();
     boolMissil := true;
-  ) else if !boolMissil && not (Keyboard.is_key_pressed KeyCode.Space) then
+  ) else if !boolMissil && not (Keyboard.is_key_pressed Keyboard.Space) then
       boolMissil := false
 
 (**************** Pause Game ***************)
@@ -116,11 +115,11 @@ let restartGame () =
   )     
    
 let eventPRS () = 
-  if Keyboard.is_key_pressed KeyCode.P then 
+  if Keyboard.is_key_pressed Keyboard.P then 
     pauseGame()
-  else if Keyboard.is_key_pressed KeyCode.R then
+  else if Keyboard.is_key_pressed Keyboard.R then
     restartGame()
-  else if Keyboard.is_key_pressed KeyCode.S then 
+  else if Keyboard.is_key_pressed Keyboard.S then 
     start := true
 
 (************************ Affichage **************************)

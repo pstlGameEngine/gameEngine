@@ -128,12 +128,7 @@ module TIMELINE = functor (G:GAME) ->
     ** jeu initial et des evenement survenus durant le temps) et d'un entier
     ** représentant la direction du temps: 1 pour futur et 0 pour passe *)
     let makeStateFromEvent window state history = 
-        if Keyboard.is_key_pressed KeyCode.Escape then
-          begin
- 	    Mjwindow.close window;
-            (state,Forward) (* meme etat *)
-	  end
-	else if (G.backInTimeCondition state) then (*on renvoi l'etat précedent*)
+        if (G.backInTimeCondition state) then (*on renvoi l'etat précedent*)
           ((getContent (previous_state history)),Backward)
         else ((G.changeStateWithEvent state window),Forward)
 
