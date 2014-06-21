@@ -1,0 +1,54 @@
+begin 
+  
+  generated = true
+  
+  begin program "camlp4o"
+  end
+
+  begin objects "js_of_ocaml.camlp4-syntax.objects"
+    dirname = [ "%{js_of_ocaml.syntax_SRC_DIR}%" ]
+    files = [ "pa_js.ml" ]
+  end
+
+  begin syntax "js_of_ocaml.camlp4-syntax"
+    requires = [ "js_of_ocaml.camlp4-syntax.objects" "camlp4o" ]
+  end
+end
+
+
+begin library "gameenegine.ocsfml" 
+      sort = true 
+      files = [
+      "sfml/audio.ml"  "sfml/bindingcolor.ml"
+       "sfml/image.ml" 
+      "sfml/keyboard.ml" "sfml/mouse.ml" "sfml/loader.ml"
+      "sfml/text.ml" "sfml/mjwindow.ml"
+
+      "common/audio.mli" "common/image.mli" "common/gif.mli"
+      "common/keyboard.mli" "common/mouse.mli" "common/text.mli"
+      "common/mjwindow.mli" "common/mjmenu.mli" "common/mjmenu.ml"
+      "common/timebis.ml" "common/time.ml" "common/mjcolor.ml"
+      "common/mjgraphics.ml"  "common/gif.ml"
+]
+
+      requires = ["ocsfml"]
+end
+
+begin library "gameenegine.js" 
+      has_asm = false
+      sort = true 
+      files = [
+      "js/audio.ml"  "js/bindingcolor.ml"
+       "js/image.ml" 
+      "js/keyboard.ml" "js/mouse.ml" "js/loader.ml"
+      "js/text.ml" "js/mjwindow.ml"
+
+      "common/audio.mli" "common/image.mli" "common/gif.mli"
+      "common/keyboard.mli" "common/mouse.mli" "common/text.mli"
+      "common/mjwindow.mli" "common/mjmenu.mli" "common/mjmenu.ml"
+      "common/timebis.ml" "common/time.ml" "common/mjcolor.ml"
+      "common/mjgraphics.ml"  "common/gif.ml"
+]     
+      syntax = [ "js_of_ocaml.camlp4-syntax"]
+      requires = ["unix" "js_of_ocaml" "js_of_ocaml.syntax"]
+end

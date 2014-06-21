@@ -140,7 +140,7 @@
     | Return -> OcsfmlWindow.KeyCode.Return
     | _       -> OcsfmlWindow.KeyCode.Pause
 
-  let keycode_state = Hashtbl.create 0
+  let keycode_state : (keycode,bool) Hashtbl.t = Hashtbl.create 0
   let init_keycode_state () = ()
   let update () = ()
 	
